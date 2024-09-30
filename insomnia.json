@@ -1,0 +1,161 @@
+{
+    "id": "wrk_1234567890",
+    "name": "Shopper Leitura de Consumo",
+    "description": "Documentação da API para o teste técnico da Shopper.com.br",
+    "created": "2023-10-27T10:00:00.000Z",
+    "updated": "2023-10-27T10:00:00.000Z",
+    "folders": [
+      {
+        "id": "fld_1234567890",
+        "name": "Leituras",
+        "description": "Endpoints para gerenciar leituras de consumo",
+        "created": "2023-10-27T10:00:00.000Z",
+        "updated": "2023-10-27T10:00:00.000Z",
+        "requests": [
+          {
+            "id": "req_1234567890",
+            "parentId": "fld_1234567890",
+            "name": "POST /upload",
+            "description": "Upload de uma nova leitura",
+            "method": "POST",
+            "url": "http://localhost:3000/api/leituras/upload",
+            "body": {
+              "mimeType": "application/json",
+              "text": "{ \"image\": \"base64_image_data\", \"customer_code\": \"12345\", \"measure_datetime\": \"2023-10-26T10:00:00.000Z\", \"measure_type\": \"WATER\" }"
+            },
+            "headers": [],
+            "created": "2023-10-27T10:00:00.000Z",
+            "updated": "2023-10-27T10:00:00.000Z",
+            "responses": [
+              {
+                "id": "res_1234567890",
+                "parentId": "req_1234567890",
+                "name": "200 OK",
+                "status": 200,
+                "body": "{ \"image_url\": \"https://api.example.com/images/123e4567-e89b-12d3-a456-426614174000\", \"measure_value\": 100, \"measure_uuid\": \"123e4567-e89b-12d3-a456-426614174000\" }",
+                "headers": [],
+                "created": "2023-10-27T10:00:00.000Z",
+                "updated": "2023-10-27T10:00:00.000Z"
+              },
+              {
+                "id": "res_1234567891",
+                "parentId": "req_1234567890",
+                "name": "400 Bad Request",
+                "status": 400,
+                "body": "{ \"error_code\": \"INVALID_DATA\", \"error_description\": \"Parâmetros inválidos.\" }",
+                "headers": [],
+                "created": "2023-10-27T10:00:00.000Z",
+                "updated": "2023-10-27T10:00:00.000Z"
+              },
+              {
+                "id": "res_1234567892",
+                "parentId": "req_1234567890",
+                "name": "500 Internal Server Error",
+                "status": 500,
+                "body": "{ \"error_code\": \"INTERNAL_ERROR\", \"error_description\": \"Erro interno do servidor.\" }",
+                "headers": [],
+                "created": "2023-10-27T10:00:00.000Z",
+                "updated": "2023-10-27T10:00:00.000Z"
+              }
+            ]
+          },
+          {
+            "id": "req_1234567891",
+            "parentId": "fld_1234567890",
+            "name": "PATCH /confirm",
+            "description": "Confirma ou corrige uma leitura",
+            "method": "PATCH",
+            "url": "http://localhost:3000/api/leituras/confirm",
+            "body": {
+              "mimeType": "application/json",
+              "text": "{ \"measure_uuid\": \"123e4567-e89b-12d3-a456-426614174000\", \"confirmed_value\": 150 }"
+            },
+            "headers": [],
+            "created": "2023-10-27T10:00:00.000Z",
+            "updated": "2023-10-27T10:00:00.000Z",
+            "responses": [
+              {
+                "id": "res_1234567893",
+                "parentId": "req_1234567891",
+                "name": "200 OK",
+                "status": 200,
+                "body": "{ \"success\": true }",
+                "headers": [],
+                "created": "2023-10-27T10:00:00.000Z",
+                "updated": "2023-10-27T10:00:00.000Z"
+              },
+              {
+                "id": "res_1234567894",
+                "parentId": "req_1234567891",
+                "name": "400 Bad Request",
+                "status": 400,
+                "body": "{ \"error_code\": \"INVALID_DATA\", \"error_description\": \"Parâmetros inválidos.\" }",
+                "headers": [],
+                "created": "2023-10-27T10:00:00.000Z",
+                "updated": "2023-10-27T10:00:00.000Z"
+              },
+              {
+                "id": "res_1234567895",
+                "parentId": "req_1234567891",
+                "name": "500 Internal Server Error",
+                "status": 500,
+                "body": "{ \"error_code\": \"INTERNAL_ERROR\", \"error_description\": \"Erro interno do servidor.\" }",
+                "headers": [],
+                "created": "2023-10-27T10:00:00.000Z",
+                "updated": "2023-10-27T10:00:00.000Z"
+              }
+            ]
+          },
+          {
+            "id": "req_1234567892",
+            "parentId": "fld_1234567890",
+            "name": "GET /<customer code>/list",
+            "description": "Lista as leituras de um cliente",
+            "method": "GET",
+            "url": "http://localhost:3000/api/leituras/{{customerCode}}/list",
+            "parameters": [
+              {
+                "id": "prm_1234567890",
+                "name": "customerCode",
+                "description": "Código do cliente",
+                "value": "12345",
+                "type": "string"
+              },
+              {
+                "id": "prm_1234567891",
+                "name": "measure_type",
+                "description": "Tipo de leitura (opcional)",
+                "value": "WATER",
+                "type": "string"
+              }
+            ],
+            "headers": [],
+            "created": "2023-10-27T10:00:00.000Z",
+            "updated": "2023-10-27T10:00:00.000Z",
+            "responses": [
+              {
+                "id": "res_1234567896",
+                "parentId": "req_1234567892",
+                "name": "200 OK",
+                "status": 200,
+                "body": "{ \"customer_code\": \"12345\", \"measures\": [ { \"measure_uuid\": \"123e4567-e89b-12d3-a456-426614174000\", \"measure_datetime\": \"2023-10-26T10:00:00.000Z\", \"measure_type\": \"WATER\", \"has_confirmed\": false, \"image_url\": \"https://api.example.com/images/123e4567-e89b-12d3-a456-426614174000\" }, { \"measure_uuid\": \"45678901-2345-6789-0123-456789012345\", \"measure_datetime\": \"2023-10-25T10:00:00.000Z\", \"measure_type\": \"GAS\", \"has_confirmed\": false, \"image_url\": \"https://api.example.com/images/45678901-2345-6789-0123-456789012345\" } ] }",
+                "headers": [],
+                "created": "2023-10-27T10:00:00.000Z",
+                "updated": "2023-10-27T10:00:00.000Z"
+              },
+              {
+                "id": "res_1234567897",
+                "parentId": "req_1234567892",
+                "name": "500 Internal Server Error",
+                "status": 500,
+                "body": "{ \"error_code\": \"INTERNAL_ERROR\", \"error_description\": \"Erro interno do servidor.\" }",
+                "headers": [],
+                "created": "2023-10-27T10:00:00.000Z",
+                "updated": "2023-10-27T10:00:00.000Z"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
