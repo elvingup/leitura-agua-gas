@@ -22,5 +22,5 @@ O endpoint GET /<customer code>/list lista as medidas realizadas por um determin
 
 ### Instruções de Execução:
 - Instalar as dependências: `npm install`
-- Construir a imagem Docker: `docker build -t shopper`
-- Iniciar o container Docker: `docker run -p 3000:3000 shopper`
+- Construir a imagem Docker: `docker build -t leitura-agua-gas`
+- Iniciar o container Docker: `docker run -p 3000:3000 leitura-agua-gas`
